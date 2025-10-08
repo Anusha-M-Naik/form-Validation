@@ -1,0 +1,50 @@
+document.addEventListener('DOMContentLoaded',()=>{
+    const form= document.getElementById('myform');
+    const email= document.getElementById('email');
+    const password= document.getElementById('password');
+    const username= document.getElementById('username');
+
+    const emailFeedback= document.getElementById('emailFeedback');
+    const passswordFeedback= document.getElementById('passwrodFeedback');
+    const usernameFeedback= document.getElementById('usernameFeedback');
+
+    email.addEventListener('input',() =>{
+
+        if(email.validity.valid){
+            emailFeedback.textContent='valid email';
+            emailFeedback.className='valid';
+        }else{
+            emailFeedback.textContent='Please enter a valid email address';
+            emailFeedback.className='error';
+
+        }
+    });
+
+password.addEventListener('input',() =>{
+    if(password.value.length>=8){
+        passwordFeedback.textContent='Password is strong';
+        passwordFeedback.className='valid';
+    }else{
+        passwordFeedback.textContent='Password must be at least 8 character long';
+        passwordFeedback.className='error';
+
+    }
+}); 
+
+username.addEventListener('input',()=>{
+    if (username.value.length >=3){
+        usernameFeedback.textContent='Username looks good';
+        usernameFeedback.className='valid';
+    }else{
+        usernameFeedback.textContent='username must be at least 3 character long';
+        usernameFeedback.className='error';
+    }
+});
+form.addEventListener('submit',(event)=>{
+    if(!email.validity.valid||password.value.length<8||username.value.length<3){
+        event.preventDefault();
+        alert("please fill out the form correctly before submitiing");
+
+    }
+})
+});
